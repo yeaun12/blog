@@ -1,10 +1,7 @@
-# "My Title"
-> "Awesome summary"
-
 ---
 toc: true
 layout: post
-description: data mining 03-11
+description: Markdown basics
 categories: [markdown]
 title: Markdown Cheat Sheet
 ---
