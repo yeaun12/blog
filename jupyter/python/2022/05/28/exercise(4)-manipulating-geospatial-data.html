@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Exercise: Manipulating Geospatial Data | YeEun</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Exercise: Manipulating Geospatial Data" />
+<meta name="author" content="YeEun" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="kaggle test" />
+<meta property="og:description" content="kaggle test" />
+<link rel="canonical" href="https://yeaun12.github.io/blog/jupyter/python/2022/05/28/exercise(4)-manipulating-geospatial-data.html" />
+<meta property="og:url" content="https://yeaun12.github.io/blog/jupyter/python/2022/05/28/exercise(4)-manipulating-geospatial-data.html" />
+<meta property="og:site_name" content="YeEun" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-28T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Exercise: Manipulating Geospatial Data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"YeEun"},"dateModified":"2022-05-28T00:00:00-05:00","datePublished":"2022-05-28T00:00:00-05:00","description":"kaggle test","headline":"Exercise: Manipulating Geospatial Data","mainEntityOfPage":{"@type":"WebPage","@id":"https://yeaun12.github.io/blog/jupyter/python/2022/05/28/exercise(4)-manipulating-geospatial-data.html"},"url":"https://yeaun12.github.io/blog/jupyter/python/2022/05/28/exercise(4)-manipulating-geospatial-data.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yeaun12.github.io/blog/feed.xml" title="YeEun" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">YeEun</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Exercise: Manipulating Geospatial Data</h1><p class="page-description">kaggle test</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-05-28T00:00:00-05:00" itemprop="datePublished">
+        May 28, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">YeEun</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/yeaun12/blog/tree/master/_notebooks/2022-05-28-exercise(4)-manipulating-geospatial-data.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/yeaun12/blog/master?filepath=_notebooks%2F2022-05-28-exercise%284%29-manipulating-geospatial-data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/yeaun12/blog/blob/master/_notebooks/2022-05-28-exercise(4)-manipulating-geospatial-data.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fyeaun12%2Fblog%2Fblob%2Fmaster%2F_notebooks%2F2022-05-28-exercise%284%29-manipulating-geospatial-data.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#Exercises">Exercises </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1)-Geocode-the-missing-locations.">1) Geocode the missing locations. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#캘리포니아에-있는-스타벅스">캘리포니아에 있는 스타벅스 </a></li>
+<li class="toc-entry toc-h1"><a href="#Berkeley에-있는-스타벅스의-위도,-경도-데이터-누락">Berkeley에 있는 스타벅스의 위도, 경도 데이터 누락 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#2)-View-Berkeley-locations.">2) View Berkeley locations. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Berkeley-위치-시각화">Berkeley 위치 시각화 </a></li>
+<li class="toc-entry toc-h1"><a href="#Berkeley-의-위치를-고려했을-때-정확해보이는-위치">Berkeley 의 위치를 고려했을 때 정확해보이는 위치 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#3)-Consolidate-your-data.">3) Consolidate your data. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#데이터-통합">데이터 통합 </a></li>
+<li class="toc-entry toc-h1"><a href="#인구밀도-열-생성">인구밀도 열 생성 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#4)-Which-counties-look-promising?">4) Which counties look promising? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#위의-조건에-만족하는-유망한-카운티(행정구역)">위의 조건에 만족하는 유망한 카운티(행정구역) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#5)-How-many-stores-did-you-identify?">5) How many stores did you identify? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Keep-going">Keep going </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-05-28-exercise(4)-manipulating-geospatial-data.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>This notebook is an exercise in the <a href="https://www.kaggle.com/learn/geospatial-analysis">Geospatial Analysis</a> course.  You can reference the tutorial at <a href="https://www.kaggle.com/alexisbcook/manipulating-geospatial-data">this link</a>.</strong></p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<p>You are a Starbucks big data analyst (<a href="https://www.forbes.com/sites/bernardmarr/2018/05/28/starbucks-using-big-data-analytics-and-artificial-intelligence-to-boost-performance/#130c7d765cdc">that’s a real job!</a>) looking to find the next store into a <a href="https://www.businessinsider.com/starbucks-reserve-roastery-compared-regular-starbucks-2018-12#also-on-the-first-floor-was-the-main-coffee-bar-five-hourglass-like-units-hold-the-freshly-roasted-coffee-beans-that-are-used-in-each-order-the-selection-rotates-seasonally-5">Starbucks Reserve Roastery</a>.  These roasteries are much larger than a typical Starbucks store and have several additional features, including various food and wine options, along with upscale lounge areas.  You'll investigate the demographics of various counties in the state of California, to determine potentially suitable locations.</p>
+<center>
+<figure>
+  
+    <img class="docimage" src="https://i.imgur.com/BIyE6kR.png" alt="" style="max-width: 450px">
+    
+    
+</figure>
+<br><br>
+</center>
+<p>Before you get started, run the code cell below to set everything up.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">geopy.geocoders</span> <span class="kn">import</span> <span class="n">Nominatim</span>            <span class="c1"># What you'd normally run</span>
+
+<span class="kn">import</span> <span class="nn">folium</span> 
+<span class="kn">from</span> <span class="nn">folium</span> <span class="kn">import</span> <span class="n">Marker</span>
+<span class="kn">from</span> <span class="nn">folium.plugins</span> <span class="kn">import</span> <span class="n">MarkerCluster</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You'll use the <code>embed_map()</code> function from the previous exercise to visualize your maps.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">embed_map</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">'100%'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">'500px'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercises">
+<a class="anchor" href="#Exercises" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exercises<a class="anchor-link" href="#Exercises"> </a>
+</h1>
+<h3 id="1)-Geocode-the-missing-locations.">
+<a class="anchor" href="#1)-Geocode-the-missing-locations." aria-hidden="true"><span class="octicon octicon-link"></span></a>1) Geocode the missing locations.<a class="anchor-link" href="#1)-Geocode-the-missing-locations."> </a>
+</h3>
+<p>Run the next code cell to create a DataFrame <code>starbucks</code> containing Starbucks locations in the state of California.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="캘리포니아에-있는-스타벅스">
+<a class="anchor" href="#%EC%BA%98%EB%A6%AC%ED%8F%AC%EB%8B%88%EC%95%84%EC%97%90-%EC%9E%88%EB%8A%94-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>캘리포니아에 있는 스타벅스<a class="anchor-link" href="#%EC%BA%98%EB%A6%AC%ED%8F%AC%EB%8B%88%EC%95%84%EC%97%90-%EC%9E%88%EB%8A%94-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">starbucks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"archive\starbucks_locations.csv"</span><span class="p">)</span>
+<span class="n">starbucks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Store Number</th>
+      <th>Store Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10429-100710</td>
+      <td>Palmdale &amp; Hwy 395</td>
+      <td>14136 US Hwy 395 Adelanto CA</td>
+      <td>Adelanto</td>
+      <td>-117.40</td>
+      <td>34.51</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>635-352</td>
+      <td>Kanan &amp; Thousand Oaks</td>
+      <td>5827 Kanan Road Agoura CA</td>
+      <td>Agoura</td>
+      <td>-118.76</td>
+      <td>34.16</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>74510-27669</td>
+      <td>Vons-Agoura Hills #2001</td>
+      <td>5671 Kanan Rd. Agoura Hills CA</td>
+      <td>Agoura Hills</td>
+      <td>-118.76</td>
+      <td>34.15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>29839-255026</td>
+      <td>Target Anaheim T-0677</td>
+      <td>8148 E SANTA ANA CANYON ROAD AHAHEIM CA</td>
+      <td>AHAHEIM</td>
+      <td>-117.75</td>
+      <td>33.87</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>23463-230284</td>
+      <td>Safeway - Alameda 3281</td>
+      <td>2600 5th Street Alameda CA</td>
+      <td>Alameda</td>
+      <td>-122.28</td>
+      <td>37.79</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Most of the stores have known (latitude, longitude) locations.  But, all of the locations in the city of Berkeley are missing.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Berkeley에-있는-스타벅스의-위도,-경도-데이터-누락">
+<a class="anchor" href="#Berkeley%EC%97%90-%EC%9E%88%EB%8A%94-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%EC%9D%98-%EC%9C%84%EB%8F%84,-%EA%B2%BD%EB%8F%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%88%84%EB%9D%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>Berkeley에 있는 스타벅스의 위도, 경도 데이터 누락<a class="anchor-link" href="#Berkeley%EC%97%90-%EC%9E%88%EB%8A%94-%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4%EC%9D%98-%EC%9C%84%EB%8F%84,-%EA%B2%BD%EB%8F%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%88%84%EB%9D%BD"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">starbucks</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># View rows with missing locations</span>
+<span class="n">rows_with_missing</span> <span class="o">=</span> <span class="n">starbucks</span><span class="p">[</span><span class="n">starbucks</span><span class="p">[</span><span class="s2">"City"</span><span class="p">]</span><span class="o">==</span><span class="s2">"Berkeley"</span><span class="p">]</span>
+<span class="n">rows_with_missing</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Store Number    0
+Store Name      0
+Address         0
+City            0
+Longitude       5
+Latitude        5
+dtype: int64
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Store Number</th>
+      <th>Store Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>153</th>
+      <td>5406-945</td>
+      <td>2224 Shattuck - Berkeley</td>
+      <td>2224 Shattuck Avenue Berkeley CA</td>
+      <td>Berkeley</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>570-512</td>
+      <td>Solano Ave</td>
+      <td>1799 Solano Avenue Berkeley CA</td>
+      <td>Berkeley</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>155</th>
+      <td>17877-164526</td>
+      <td>Safeway - Berkeley #691</td>
+      <td>1444 Shattuck Place Berkeley CA</td>
+      <td>Berkeley</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>19864-202264</td>
+      <td>Telegraph &amp; Ashby</td>
+      <td>3001 Telegraph Avenue Berkeley CA</td>
+      <td>Berkeley</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>9217-9253</td>
+      <td>2128 Oxford St.</td>
+      <td>2128 Oxford Street Berkeley CA</td>
+      <td>Berkeley</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>geocoder 사용</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the code cell below to fill in these values with the Nominatim geocoder.</p>
+<p>Note that in the tutorial, we used <code>Nominatim()</code> (from <code>geopy.geocoders</code>) to geocode values, and this is what you can use in your own projects outside of this course.</p>
+<p>In this exercise, you will use a slightly different function <code>Nominatim()</code> (from <code>learntools.geospatial.tools</code>).  This function was imported at the top of the notebook and works identically to the function from GeoPandas.</p>
+<p>So, in other words, as long as:</p>
+<ul>
+<li>you don't change the import statements at the top of the notebook, and </li>
+<li>you call the geocoding function as <code>geocode()</code> in the code cell below, </li>
+</ul>
+<p>your code will work as intended!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">geolocator</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s2">"kaggle_learn"</span><span class="p">)</span>
+
+<span class="c1"># Your code here</span>
+<span class="k">def</span> <span class="nf">my_geocoder</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">geolocator</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">point</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">'Latitude'</span><span class="p">:</span> <span class="n">point</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="s1">'Longitude'</span><span class="p">:</span> <span class="n">point</span><span class="o">.</span><span class="n">longitude</span><span class="p">})</span>
+
+<span class="n">berkeley_locations</span> <span class="o">=</span> <span class="n">rows_with_missing</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">my_geocoder</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'Address'</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">starbucks</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">berkeley_locations</span><span class="p">)</span>
+
+
+<span class="c1"># Check your answer</span>
+<span class="c1">#q_1.check()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#q_1.solution()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-View-Berkeley-locations.">
+<a class="anchor" href="#2)-View-Berkeley-locations." aria-hidden="true"><span class="octicon octicon-link"></span></a>2) View Berkeley locations.<a class="anchor-link" href="#2)-View-Berkeley-locations."> </a>
+</h3>
+<p>Let's take a look at the locations you just found.  Visualize the (latitude, longitude) locations in Berkeley in the OpenStreetMap style.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Berkeley-위치-시각화">
+<a class="anchor" href="#Berkeley-%EC%9C%84%EC%B9%98-%EC%8B%9C%EA%B0%81%ED%99%94" aria-hidden="true"><span class="octicon octicon-link"></span></a>Berkeley 위치 시각화<a class="anchor-link" href="#Berkeley-%EC%9C%84%EC%B9%98-%EC%8B%9C%EA%B0%81%ED%99%94"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m_2</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">37.88</span><span class="p">,</span><span class="o">-</span><span class="mf">122.26</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 배율 설정</span>
+
+<span class="c1"># Your code here: Add a marker for each Berkeley location</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">starbucks</span><span class="p">[</span><span class="n">starbucks</span><span class="p">[</span><span class="s2">"City"</span><span class="p">]</span><span class="o">==</span><span class="s1">'Berkeley'</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">Marker</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="s1">'Latitude'</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">'Longitude'</span><span class="p">]])</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m_2</span><span class="p">)</span>
+
+<span class="c1"># 위치 표시</span>
+
+<span class="c1"># Uncomment to see a hint</span>
+<span class="c1">#q_2.a.hint()</span>
+
+<span class="c1"># Show the map</span>
+<span class="n">embed_map</span><span class="p">(</span><span class="n">m_2</span><span class="p">,</span> <span class="s1">'q_2.html'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe width="100%" height="500px" src="q_2.html" frameborder="0" allowfullscreen=""></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#q_2.a.check()</span>
+
+<span class="c1"># Uncomment to see our solution (your code may look different!)</span>
+<span class="c1">#q_2.a.solution()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Considering only the five locations in Berkeley, how many of the (latitude, longitude) locations seem potentially correct (are located in the correct city)?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Berkeley-의-위치를-고려했을-때-정확해보이는-위치">
+<a class="anchor" href="#Berkeley-%EC%9D%98-%EC%9C%84%EC%B9%98%EB%A5%BC-%EA%B3%A0%EB%A0%A4%ED%96%88%EC%9D%84-%EB%95%8C-%EC%A0%95%ED%99%95%ED%95%B4%EB%B3%B4%EC%9D%B4%EB%8A%94-%EC%9C%84%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>Berkeley 의 위치를 고려했을 때 정확해보이는 위치<a class="anchor-link" href="#Berkeley-%EC%9D%98-%EC%9C%84%EC%B9%98%EB%A5%BC-%EA%B3%A0%EB%A0%A4%ED%96%88%EC%9D%84-%EB%95%8C-%EC%A0%95%ED%99%95%ED%95%B4%EB%B3%B4%EC%9D%B4%EB%8A%94-%EC%9C%84%EC%B9%98"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#q_2.b.solution()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>전체적으로 다섯개 전부 정확해보인다. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-Consolidate-your-data.">
+<a class="anchor" href="#3)-Consolidate-your-data." aria-hidden="true"><span class="octicon octicon-link"></span></a>3) Consolidate your data.<a class="anchor-link" href="#3)-Consolidate-your-data."> </a>
+</h3>
+<p>Run the code below to load a GeoDataFrame <code>CA_counties</code> containing the name, area (in square kilometers), and a unique id (in the "GEOID" column) for each county in the state of California.  The "geometry" column contains a polygon with county boundaries.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="데이터-통합">
+<a class="anchor" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%86%B5%ED%95%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>데이터 통합<a class="anchor-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%86%B5%ED%95%A9"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CA_counties</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">"archive\CA_county_boundaries\CA_county_boundaries\CA_county_boundaries.shp"</span><span class="p">)</span>
+<span class="n">CA_counties</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GEOID</th>
+      <th>name</th>
+      <th>area_sqkm</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6091</td>
+      <td>Sierra County</td>
+      <td>2491.995494</td>
+      <td>POLYGON ((-120.65560 39.69357, -120.65554 39.6...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6067</td>
+      <td>Sacramento County</td>
+      <td>2575.258262</td>
+      <td>POLYGON ((-121.18858 38.71431, -121.18732 38.7...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6083</td>
+      <td>Santa Barbara County</td>
+      <td>9813.817958</td>
+      <td>MULTIPOLYGON (((-120.58191 34.09856, -120.5822...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6009</td>
+      <td>Calaveras County</td>
+      <td>2685.626726</td>
+      <td>POLYGON ((-120.63095 38.34111, -120.63058 38.3...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6111</td>
+      <td>Ventura County</td>
+      <td>5719.321379</td>
+      <td>MULTIPOLYGON (((-119.63631 33.27304, -119.6360...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, we create three DataFrames:</p>
+<ul>
+<li>
+<code>CA_pop</code> contains an estimate of the population of each county.</li>
+<li>
+<code>CA_high_earners</code> contains the number of households with an income of at least $150,000 per year.</li>
+<li>
+<code>CA_median_age</code> contains the median age for each county.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CA_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"archive\CA_county_population.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">"GEOID"</span><span class="p">)</span>
+<span class="n">CA_high_earners</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"archive\CA_county_high_earners.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">"GEOID"</span><span class="p">)</span>
+<span class="n">CA_median_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"archive\CA_county_median_age.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">"GEOID"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the next code cell to join the <code>CA_counties</code> GeoDataFrame with <code>CA_pop</code>, <code>CA_high_earners</code>, and <code>CA_median_age</code>.</p>
+<p>Name the resultant GeoDataFrame <code>CA_stats</code>, and make sure it has 8 columns: "GEOID", "name", "area_sqkm", "geometry", "population", "high_earners", and "median_age".  Also, make sure the CRS is set to <code>{'init': 'epsg:4326'}</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_add</span> <span class="o">=</span> <span class="n">CA_pop</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">CA_high_earners</span><span class="p">,</span> <span class="n">CA_median_age</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">CA_stats</span> <span class="o">=</span> <span class="n">CA_counties</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cols_to_add</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"GEOID"</span><span class="p">)</span>
+<span class="n">CA_stats</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'init'</span><span class="p">:</span> <span class="s1">'epsg:4326'</span><span class="p">}</span>
+<span class="c1"># Check your answer</span>
+<span class="c1">#q_3.check()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\Users\82108\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pyproj\crs\crs.py:130: FutureWarning: '+init=&lt;authority&gt;:&lt;code&gt;' syntax is deprecated. '&lt;authority&gt;:&lt;code&gt;' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  in_crs_string = _prepare_from_proj_string(in_crs_string)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#q_3.hint()</span>
+<span class="c1">#q_3.solution()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have all of the data in one place, it's much easier to calculate statistics that use a combination of columns.  Run the next code cell to create a "density" column with the population density.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="인구밀도-열-생성">
+<a class="anchor" href="#%EC%9D%B8%EA%B5%AC%EB%B0%80%EB%8F%84-%EC%97%B4-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>인구밀도 열 생성<a class="anchor-link" href="#%EC%9D%B8%EA%B5%AC%EB%B0%80%EB%8F%84-%EC%97%B4-%EC%83%9D%EC%84%B1"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CA_stats</span><span class="p">[</span><span class="s2">"density"</span><span class="p">]</span> <span class="o">=</span> <span class="n">CA_stats</span><span class="p">[</span><span class="s2">"population"</span><span class="p">]</span> <span class="o">/</span> <span class="n">CA_stats</span><span class="p">[</span><span class="s2">"area_sqkm"</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4)-Which-counties-look-promising?">
+<a class="anchor" href="#4)-Which-counties-look-promising?" aria-hidden="true"><span class="octicon octicon-link"></span></a>4) Which counties look promising?<a class="anchor-link" href="#4)-Which-counties-look-promising?"> </a>
+</h3>
+<p>Collapsing all of the information into a single GeoDataFrame also makes it much easier to select counties that meet specific criteria.</p>
+<p>Use the next code cell to create a GeoDataFrame <code>sel_counties</code> that contains a subset of the rows (and all of the columns) from the <code>CA_stats</code> GeoDataFrame.  In particular, you should select counties where:</p>
+<ul>
+<li>there are at least 100,000 households making \$150,000 per year,</li>
+<li>the median age is less than 38.5, and</li>
+<li>the density of inhabitants is at least 285 (per square kilometer).</li>
+</ul>
+<p>Additionally, selected counties should satisfy at least one of the following criteria:</p>
+<ul>
+<li>there are at least 500,000 households making \$150,000 per year,</li>
+<li>the median age is less than 35.5, or</li>
+<li>the density of inhabitants is at least 1400 (per square kilometer).</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="위의-조건에-만족하는-유망한-카운티(행정구역)">
+<a class="anchor" href="#%EC%9C%84%EC%9D%98-%EC%A1%B0%EA%B1%B4%EC%97%90-%EB%A7%8C%EC%A1%B1%ED%95%98%EB%8A%94-%EC%9C%A0%EB%A7%9D%ED%95%9C-%EC%B9%B4%EC%9A%B4%ED%8B%B0(%ED%96%89%EC%A0%95%EA%B5%AC%EC%97%AD)" aria-hidden="true"><span class="octicon octicon-link"></span></a>위의 조건에 만족하는 유망한 카운티(행정구역)<a class="anchor-link" href="#%EC%9C%84%EC%9D%98-%EC%A1%B0%EA%B1%B4%EC%97%90-%EB%A7%8C%EC%A1%B1%ED%95%98%EB%8A%94-%EC%9C%A0%EB%A7%9D%ED%95%9C-%EC%B9%B4%EC%9A%B4%ED%8B%B0(%ED%96%89%EC%A0%95%EA%B5%AC%EC%97%AD)"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sel_counties</span> <span class="o">=</span> <span class="n">CA_stats</span><span class="p">[((</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">high_earners</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">&amp;</span>
+                         <span class="p">(</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">median_age</span> <span class="o">&lt;</span> <span class="mf">38.5</span><span class="p">)</span> <span class="o">&amp;</span>
+                         <span class="p">(</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">density</span> <span class="o">&gt;</span> <span class="mi">285</span><span class="p">)</span> <span class="o">&amp;</span>
+                         <span class="p">((</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">median_age</span> <span class="o">&lt;</span> <span class="mf">35.5</span><span class="p">)</span> <span class="o">|</span>
+                         <span class="p">(</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">density</span> <span class="o">&gt;</span> <span class="mi">1400</span><span class="p">)</span> <span class="o">|</span>
+                         <span class="p">(</span><span class="n">CA_stats</span><span class="o">.</span><span class="n">high_earners</span> <span class="o">&gt;</span> <span class="mi">500000</span><span class="p">)))]</span>
+
+<span class="n">sel_counties</span>
+<span class="c1"># Check your answer</span>
+<span class="c1">#q_4.check()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GEOID</th>
+      <th>name</th>
+      <th>area_sqkm</th>
+      <th>geometry</th>
+      <th>population</th>
+      <th>high_earners</th>
+      <th>median_age</th>
+      <th>density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>6037</td>
+      <td>Los Angeles County</td>
+      <td>12305.376879</td>
+      <td>MULTIPOLYGON (((-118.66761 33.47749, -118.6682...</td>
+      <td>10105518</td>
+      <td>501413</td>
+      <td>36.0</td>
+      <td>821.227834</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>6073</td>
+      <td>San Diego County</td>
+      <td>11721.342229</td>
+      <td>POLYGON ((-117.43744 33.17953, -117.44955 33.1...</td>
+      <td>3343364</td>
+      <td>194676</td>
+      <td>35.4</td>
+      <td>285.237299</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>6075</td>
+      <td>San Francisco County</td>
+      <td>600.588247</td>
+      <td>MULTIPOLYGON (((-122.60025 37.80249, -122.6123...</td>
+      <td>883305</td>
+      <td>114989</td>
+      <td>38.3</td>
+      <td>1470.733077</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#q_4.hint()</span>
+<span class="c1">#q_4.solution()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5)-How-many-stores-did-you-identify?">
+<a class="anchor" href="#5)-How-many-stores-did-you-identify?" aria-hidden="true"><span class="octicon octicon-link"></span></a>5) How many stores did you identify?<a class="anchor-link" href="#5)-How-many-stores-did-you-identify?"> </a>
+</h3>
+<p>When looking for the next Starbucks Reserve Roastery location, you'd like to consider all of the stores within the counties that you selected.  So, how many stores are within the selected counties?</p>
+<p>To prepare to answer this question, run the next code cell to create a GeoDataFrame <code>starbucks_gdf</code> with all of the starbucks locations.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">starbucks_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">starbucks</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">starbucks</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">starbucks</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
+<span class="n">starbucks_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'init'</span><span class="p">:</span> <span class="s1">'epsg:4326'</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>c:\Users\82108\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pyproj\crs\crs.py:130: FutureWarning: '+init=&lt;authority&gt;:&lt;code&gt;' syntax is deprecated. '&lt;authority&gt;:&lt;code&gt;' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  in_crs_string = _prepare_from_proj_string(in_crs_string)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, how many stores are in the counties you selected?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Keep-going">
+<a class="anchor" href="#Keep-going" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keep going<a class="anchor-link" href="#Keep-going"> </a>
+</h1>
+<p>Learn about how <strong><a href="https://www.kaggle.com/alexisbcook/proximity-analysis">proximity analysis</a></strong> can help you to understand the relationships between points on a map.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><em>Have questions or comments? Visit the <a href="https://www.kaggle.com/learn/geospatial-analysis/discussion">course discussion forum</a> to chat with other learners.</em></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yeaun12/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/jupyter/python/2022/05/28/exercise(4)-manipulating-geospatial-data.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>data mining</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" target="_blank" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" target="_blank" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
